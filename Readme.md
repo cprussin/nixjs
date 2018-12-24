@@ -47,8 +47,8 @@ this repository:
 - Javascript ecosystem tools that are generally not installed via node package
   managers, such as the package managers themselves (yarn, pnpm, etc.)
 - Portions of tooling for languages that compile to javascript that aren't
-  generally installed through node package managers--for instance, the
-  purescript compiler
+  generally installed through node package managers (for instance, the
+  purescript compiler)
 - Versions of system libraries necessary to support any of the above that aren't
   in nixpkgs or aren't reliable in nixpkgs
 
