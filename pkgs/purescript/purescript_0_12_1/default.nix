@@ -1,42 +1,67 @@
-{ stdenv, fetchurl, makeWrapper, patchelf, gmpxx, ncurses5, zlib }:
+{ haskell }:
 
-let
-  system = stdenv.lib.hostPlatform.system;
-  libs = stdenv.lib.makeLibraryPath [ stdenv.cc.cc gmpxx ncurses5 zlib ];
-in
+haskell.packages.ghc843.callPackage (
+  { mkDerivation, aeson, aeson-better-errors, ansi-terminal
+  , ansi-wl-pprint, base, base-compat, blaze-html, bower-json, boxes
+  , bytestring, Cabal, cheapskate, clock, containers, data-ordlist
+  , deepseq, directory, dlist, edit-distance, file-embed, filepath
+  , fsnotify, gitrev, Glob, haskeline, hspec, hspec-discover
+  , http-types, HUnit, language-javascript, lifted-base
+  , microlens-platform, monad-control, monad-logger, mtl, network
+  , optparse-applicative, parallel, parsec, pattern-arrows, process
+  , protolude, regex-tdfa, safe, scientific, semigroups, sourcemap
+  , split, stdenv, stm, stringsearch, syb, tasty, tasty-hspec, text
+  , time, transformers, transformers-base, transformers-compat
+  , unordered-containers, utf8-string, vector, wai, wai-websockets
+  , warp, websockets
+  }:
 
-stdenv.mkDerivation rec {
-  name = "purescript-binary-${version}";
-  version = "0.12.1";
-
-  src = fetchurl {
-    url = "https://github.com/purescript/purescript/releases/download/v${version}/linux64.tar.gz";
-    sha256 = "01az5127g7jpznsjvpkrl59i922fc5i219qdvsrimzimrv08mr18";
-    name = "purescript.tar.gz";
-  };
-
-  buildInputs = [ makeWrapper ];
-  unpackCmd = "tar -xzf $curSrc";
-
-  installPhase = ''
-    mkdir -p $out/bin $out/lib
-    cp purs $out/bin/
-    runHook postInstall
-  '';
-
-  postInstall = ''
-    interpreter="$(cat $NIX_CC/nix-support/dynamic-linker)"
-    ${patchelf}/bin/patchelf --set-interpreter $interpreter $out/bin/purs
-    wrapProgram $out/bin/purs --prefix LD_LIBRARY_PATH : ${libs}
-  '';
-
-  meta = {
-    description = ''
-      A small strongly typed programming language with expressive types that
-      compiles to JavaScript, written in and inspired by Haskell.
-    '';
-    homepage = http://www.purescript.org/;
+  mkDerivation {
+    pname = "purescript";
+    version = "0.12.1";
+    sha256 = "81ab67e994a85e4ee455d35a5023b5ee2f191c83e9de2be65a8cd2892e302454";
+    isLibrary = true;
+    isExecutable = true;
+    libraryHaskellDepends = [
+      aeson aeson-better-errors ansi-terminal base base-compat blaze-html
+      bower-json boxes bytestring Cabal cheapskate clock containers
+      data-ordlist deepseq directory dlist edit-distance file-embed
+      filepath fsnotify Glob haskeline language-javascript lifted-base
+      microlens-platform monad-control monad-logger mtl parallel parsec
+      pattern-arrows process protolude regex-tdfa safe scientific
+      semigroups sourcemap split stm stringsearch syb text time
+      transformers transformers-base transformers-compat
+      unordered-containers utf8-string vector
+    ];
+    executableHaskellDepends = [
+      aeson aeson-better-errors ansi-terminal ansi-wl-pprint base
+      base-compat blaze-html bower-json boxes bytestring Cabal cheapskate
+      clock containers data-ordlist deepseq directory dlist edit-distance
+      file-embed filepath fsnotify gitrev Glob haskeline http-types
+      language-javascript lifted-base microlens-platform monad-control
+      monad-logger mtl network optparse-applicative parallel parsec
+      pattern-arrows process protolude regex-tdfa safe scientific
+      semigroups sourcemap split stm stringsearch syb text time
+      transformers transformers-base transformers-compat
+      unordered-containers utf8-string vector wai wai-websockets warp
+      websockets
+    ];
+    testHaskellDepends = [
+      aeson aeson-better-errors ansi-terminal base base-compat blaze-html
+      bower-json boxes bytestring Cabal cheapskate clock containers
+      data-ordlist deepseq directory dlist edit-distance file-embed
+      filepath fsnotify Glob haskeline hspec hspec-discover HUnit
+      language-javascript lifted-base microlens-platform monad-control
+      monad-logger mtl parallel parsec pattern-arrows process protolude
+      regex-tdfa safe scientific semigroups sourcemap split stm
+      stringsearch syb tasty tasty-hspec text time transformers
+      transformers-base transformers-compat unordered-containers
+      utf8-string vector
+    ];
+    testToolDepends = [ hspec-discover ];
+    doCheck = false;
+    homepage = "http://www.purescript.org/";
+    description = "PureScript Programming Language Compiler";
     license = stdenv.lib.licenses.bsd3;
-    platforms = [ "x86_64-linux" ];
-  };
-}
+  }
+) {}
