@@ -1,6 +1,14 @@
 language: nix
+
 before_script:
   - sudo mkdir /etc/nix && echo 'sandbox = true' | sudo tee /etc/nix/nix.conf
-  - nix-channel --add https://nixos.org/channels/nixos-18.09 nixpkgs
-  - nix-channel --update
-script: nix-build ./pkgs
+
+jobs:
+  include:
+
+    - stage: "Build"
+      script: nix-build ./pkgs
+      name: "Build against nixpkgs unstable"
+
+    - script: nix-channel --add https://nixos.org/channels/nixos-18.09 nixpkgs && nix-channel --update && nix-build ./pkgs
+      name: "Build against nixpkgs 18.09"
