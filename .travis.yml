@@ -1,0 +1,4 @@
+language: nix
+before_script:
+  - sudo mkdir /etc/nix && echo 'sandbox = true' | sudo tee /etc/nix/nix.conf
+script: nix-build ./pkgs/default.nix
