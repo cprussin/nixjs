@@ -1,4 +1,4 @@
-{ callPackage }:
+{ callPackage ? (import <nixpkgs> {}).callPackage }:
 
 let
   libuv_1_24_0 = callPackage ./libraries/libuv_1_24_0 {};
