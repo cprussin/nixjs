@@ -1,7 +1,7 @@
 language: nix
 before_script:
   - sudo mkdir /etc/nix && echo 'sandbox = true' | sudo tee /etc/nix/nix.conf
-  - nix-channel --add https://nixos.org/channels/nixos-18.09
+  - nix-channel --add https://nixos.org/channels/nixos-18.09 nixpkgs
   - nix-channel --update
   - nix-channel --list
 script: nix-build ./pkgs
