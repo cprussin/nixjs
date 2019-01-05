@@ -1,4 +1,6 @@
 language: nix
+cache: ccache
+os: linux
 
 before_script:
   - sudo mkdir /etc/nix && echo 'sandbox = true' | sudo tee /etc/nix/nix.conf
@@ -6,9 +8,9 @@ before_script:
 jobs:
   include:
 
-    - stage: "Build"
+    - stage: build
       script: nix-build ./pkgs
-      name: "Build against nixpkgs unstable"
+      name: "nixpkgs unstable"
 
     - script: nix-channel --add https://nixos.org/channels/nixos-18.09 nixpkgs && nix-channel --update && nix-build ./pkgs
-      name: "Build against nixpkgs 18.09"
+      name: "nixpkgs 18.09"
