@@ -1,4 +1,4 @@
-{ haskell }:
+{ version, sha256 }: { haskell }:
 
 haskell.packages.ghc843.callPackage (
   { mkDerivation, aeson, aeson-better-errors, ansi-terminal
@@ -18,8 +18,8 @@ haskell.packages.ghc843.callPackage (
 
   mkDerivation {
     pname = "purescript";
-    version = "0.12.1";
-    sha256 = "81ab67e994a85e4ee455d35a5023b5ee2f191c83e9de2be65a8cd2892e302454";
+    version = version;
+    sha256 = sha256;
     isLibrary = true;
     isExecutable = true;
     libraryHaskellDepends = [
