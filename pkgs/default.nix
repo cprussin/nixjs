@@ -9,6 +9,7 @@ in
 
   electron_3_0_0-beta_5 = callPackage ./electron/electron_3_0_0-beta_5 {};
 
+  nodejs_10_13_0 = callPackage ./nodejs/nodejs_10_13_0 { inherit libuv_1_24_0; };
   nodejs_10_14_1 = callPackage ./nodejs/nodejs_10_14_1 { inherit libuv_1_24_0; };
   nodejs_10_14_2 = callPackage ./nodejs/nodejs_10_14_2 { inherit libuv_1_24_0; };
 
