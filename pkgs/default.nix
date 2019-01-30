@@ -2,16 +2,19 @@
 
 let
   libuv_1_24_0 = callPackage ./libraries/libuv_1_24_0 {};
+  http-parser_2_9_0 = callPackage ./libraries/http-parser_2_9_0 {};
 in
 
 {
-  inherit libuv_1_24_0;
+  inherit libuv_1_24_0 http-parser_2_9_0;
 
   electron_3_0_0-beta_5 = callPackage ./electron/electron_3_0_0-beta_5 {};
 
   nodejs_10_13_0 = callPackage ./nodejs/nodejs_10_13_0 { inherit libuv_1_24_0; };
   nodejs_10_14_1 = callPackage ./nodejs/nodejs_10_14_1 { inherit libuv_1_24_0; };
   nodejs_10_14_2 = callPackage ./nodejs/nodejs_10_14_2 { inherit libuv_1_24_0; };
+  nodejs_10_15_0 = callPackage ./nodejs/nodejs_10_15_0 { inherit libuv_1_24_0 http-parser_2_9_0; };
+  nodejs_10_15_1 = callPackage ./nodejs/nodejs_10_15_1 { inherit libuv_1_24_0 http-parser_2_9_0; };
 
   purescript_0_12_1 = callPackage ./purescript/purescript_0_12_1 {};
   purescript_0_12_2 = callPackage ./purescript/purescript_0_12_2 {};
