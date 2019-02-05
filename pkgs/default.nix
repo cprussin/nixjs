@@ -9,6 +9,7 @@ in
   inherit libuv_1_24_0 http-parser_2_9_0;
 
   electron_3_0_0-beta_5 = callPackage ./electron/electron_3_0_0-beta_5 {};
+  electron_4_0_4 = callPackage ./electron/electron_4_0_4 {};
 
   nodejs_10_13_0 = callPackage ./nodejs/nodejs_10_13_0 { inherit libuv_1_24_0; };
   nodejs_10_14_1 = callPackage ./nodejs/nodejs_10_14_1 { inherit libuv_1_24_0; };
