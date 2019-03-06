@@ -16,25 +16,21 @@ use the following `shell.nix`:
 
 ```nix
 {
-  nodejsVersion ? "10.14.1",
-  yarnVersion ? "1.12.3",
-  purescriptVersion ? "0.12.1",
-  nixjs ? fetchTarball "https://github.com/cprussin/nixjs/archive/0.0.2.tar.gz",
+  nodejs ? "10.14.1",
+  yarn ? "1.12.3",
+  purescript ? "0.12.1",
+  nixjs-version ? "0.0.7",
+  nixjs ? fetchTarball "https://github.com/cprussin/nixjs/archive/${nixjs-version}.tar.gz",
   nixpkgs ? <nixpkgs>
 }:
 
-with import nixpkgs {
-  overlays = [
-    (import nixjs {
-      nodejs = nodejsVersion;
-      yarn = yarnVersion;
-      purescript = purescriptVersion;
-    })
-  ];
-};
+let
+  nixjs-overlay = import nixjs { inherit nodejs yarn purescript; };
+  pkgs = import nixpkgs { overlays = [ nixjs-overlay ]; };
+in
 
-mkShell {
-  buildInputs = [ nodejs yarn purescript ];
+pkgs.mkShell {
+  buildInputs = [ pkgs.nodejs pkgs.yarn pkgs.purescript ];
 }
 ```
 
