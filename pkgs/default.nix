@@ -21,5 +21,7 @@ in
   purescript_0_12_2 = callPackage ./purescript/purescript_0_12_2 {};
   purescript_0_12_3 = callPackage ./purescript/purescript_0_12_3 {};
 
+  spago_0_7_2_0 = callPackage ./purescript/spago_0_7_2_0 {};
+
   yarn_1_12_3 = callPackage ./yarn/yarn_1_12_3 {};
 }
