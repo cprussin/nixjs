@@ -1,6 +1,6 @@
 { version, sha256 }: { haskell }:
 
-haskell.packages.ghc843.callPackage (
+haskell.packages.ghc844.callPackage (
   { mkDerivation, aeson, aeson-better-errors, ansi-terminal
   , ansi-wl-pprint, base, base-compat, blaze-html, bower-json, boxes
   , bytestring, Cabal, cheapskate, clock, containers, data-ordlist
