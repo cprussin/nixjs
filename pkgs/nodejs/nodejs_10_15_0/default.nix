@@ -1,7 +1,7 @@
-{ stdenv, callPackage, lib, openssl_1_1_0, libuv_1_24_0, http-parser_2_9_0 }:
+{ stdenv, callPackage, lib, openssl_1_1, libuv_1_24_0, http-parser_2_9_0 }:
 
 let
-  openssl = openssl_1_1_0;
+  openssl = openssl_1_1;
   libuv = libuv_1_24_0;
   http-parser = http-parser_2_9_0;
   buildNodejs = callPackage <nixpkgs/pkgs/development/web/nodejs/nodejs.nix> { inherit openssl libuv http-parser; };
