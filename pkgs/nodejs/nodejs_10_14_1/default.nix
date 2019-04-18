@@ -1,8 +1,9 @@
-{ stdenv, callPackage, lib, libuv_1_24_0 }:
+{ stdenv, callPackage, lib, openssl_1_1_0, libuv_1_24_0 }:
 
 let
+  openssl = openssl_1_1_0;
   libuv = libuv_1_24_0;
-  buildNodejs = callPackage <nixpkgs/pkgs/development/web/nodejs/nodejs.nix> { inherit libuv; };
+  buildNodejs = callPackage <nixpkgs/pkgs/development/web/nodejs/nodejs.nix> { inherit openssl libuv; };
 in
   buildNodejs {
     version = "10.14.1";
