@@ -19,8 +19,7 @@ use the following `shell.nix`:
   nodejs ? "10.14.1",
   yarn ? "1.12.3",
   purescript ? "0.12.1",
-  nixjs-version ? "0.0.7",
-  nixjs ? fetchTarball "https://github.com/cprussin/nixjs/archive/${nixjs-version}.tar.gz",
+  nixjs ? fetchTarball "https://github.com/cprussin/nixjs/tarball/release-19.03",
   nixpkgs ? <nixpkgs>
 }:
 
