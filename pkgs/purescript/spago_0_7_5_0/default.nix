@@ -40893,9 +40893,8 @@ inherit (pkgs) libjpeg; inherit (pkgs) libpng; inherit (pkgs) zlib;};
            license = stdenv.lib.licenses.bsd3;
          }) {};
     };
-in compiler.override {
+in (compiler.override {
   initialPackages = stackPackages;
   configurationCommon = { ... }: self: super: {};
   compilerConfig = self: super: {};
-}
-
+}).spago
