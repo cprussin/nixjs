@@ -1,4 +1,4 @@
-{ version, sha256 }:
+{ version, sha256, extraDepends? [] }:
 { mkDerivation, aeson, aeson-better-errors, ansi-terminal
 , ansi-wl-pprint, base, base-compat, blaze-html, bower-json, boxes
 , bytestring, Cabal, cheapskate, clock, containers, data-ordlist
@@ -29,7 +29,7 @@ mkDerivation {
     semigroups sourcemap split stm stringsearch syb text time
     transformers transformers-base transformers-compat
     unordered-containers utf8-string vector
-  ];
+  ] ++ extraDepends;
   executableHaskellDepends = [
     aeson aeson-better-errors ansi-terminal ansi-wl-pprint base
     base-compat blaze-html bower-json boxes bytestring Cabal cheapskate
@@ -42,7 +42,7 @@ mkDerivation {
     transformers transformers-base transformers-compat
     unordered-containers utf8-string vector wai wai-websockets warp
     websockets
-  ];
+  ] ++ extraDepends;
   testHaskellDepends = [
     aeson aeson-better-errors ansi-terminal base base-compat blaze-html
     bower-json boxes bytestring Cabal cheapskate clock containers
@@ -54,7 +54,7 @@ mkDerivation {
     stringsearch syb tasty tasty-hspec text time transformers
     transformers-base transformers-compat unordered-containers
     utf8-string vector
-  ];
+  ] ++ extraDepends;
   testToolDepends = [ hspec-discover ];
   doCheck = false;
   homepage = "http://www.purescript.org/";
