@@ -29,4 +29,5 @@ in
   spago_0_7_5_0 = callPackage ./purescript/spago_0_7_5_0 {};
 
   yarn_1_12_3 = callPackage ./yarn/yarn_1_12_3 {};
+  yarn_1_16_0 = callPackage ./yarn/yarn_1_16_0 {};
 }
