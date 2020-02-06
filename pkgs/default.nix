@@ -31,4 +31,5 @@ in
   yarn_1_12_3 = callPackage ./yarn/yarn_1_12_3 {};
   yarn_1_16_0 = callPackage ./yarn/yarn_1_16_0 {};
   yarn_1_21_1 = callPackage ./yarn/yarn_1_21_1 {};
+  yarn_2_0_0-rc_27 = callPackage ./yarn/yarn_2_0_0-rc_27 {};
 }
