@@ -18,6 +18,7 @@ in
   nodejs_10_15_1 = callPackage ./nodejs/nodejs_10_15_1 { inherit libuv_1_24_0 http-parser_2_9_0; };
   nodejs_10_15_3 = callPackage ./nodejs/nodejs_10_15_3 { inherit libuv_1_24_0 http-parser_2_9_0; };
   nodejs_10_19_0 = callPackage ./nodejs/nodejs_10_19_0 {};
+  nodejs_12_14_1 = callPackage ./nodejs/nodejs_12_14_1 {};
 
   purescript_0_12_1 = callPackage ./purescript/purescript_0_12_1 {};
   purescript_0_12_2 = callPackage ./purescript/purescript_0_12_2 {};
@@ -32,5 +33,6 @@ in
   yarn_1_12_3 = callPackage ./yarn/yarn_1_12_3 {};
   yarn_1_16_0 = callPackage ./yarn/yarn_1_16_0 {};
   yarn_1_21_1 = callPackage ./yarn/yarn_1_21_1 {};
+  yarn_1_22_0 = callPackage ./yarn/yarn_1_22_0 {};
   yarn_2_0_0-rc_27 = callPackage ./yarn/yarn_2_0_0-rc_27 {};
 }
