@@ -1,0 +1,17 @@
+name: Build
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: '0 */6 * * *'
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: cachix/install-nix-action@v9
+    - uses: cachix/cachix-action@v6
+      with:
+        name: nixjs
+        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+    - run: nix-build release.nix
