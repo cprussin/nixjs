@@ -1,4 +1,5 @@
 name: Build
+
 on:
   pull_request:
   push:
@@ -6,7 +7,8 @@ on:
       - master
       - release-20.03
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 * * * *'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,4 +21,11 @@ jobs:
       with:
         name: nixjs
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-    - run: nix-build release.nix
+    - run: |
+        nix-build release.nix \
+            --argstr nodejs ${{ matrix.nodejs }} \
+            --argstr yarn ${{ matrix.yarn }}
+    strategy:
+      matrix:
+        nodejs: [12.16.0, 12.16.2]
+        yarn: [1.22.0, 1.22.4]
