@@ -1,6 +1,11 @@
 name: Check
 
-on: [pull_request, push]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - release-20.03
 
 jobs:
   lint:
@@ -14,6 +19,9 @@ jobs:
         uses: cachix/install-nix-action@v10
         with:
           nix_path: nixpkgs=channel:nixos-20.03
+
+      - name: Install packages
+        run: nix-shell
 
       - name: Run lint
         run: nix-shell --run lint
