@@ -1,4 +1,4 @@
-{ stdenv, nodejs, fetchzip }:
+{ stdenv, nodejs }:
 
 stdenv.mkDerivation rec {
   name = "yarn-${version}";
