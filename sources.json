@@ -1,0 +1,26 @@
+{
+    "nix-linter": {
+        "branch": "master",
+        "description": "Linter for the Nix expression language",
+        "homepage": "",
+        "owner": "Synthetica9",
+        "repo": "nix-linter",
+        "rev": "8f1037ddb3c03a12f285b4a9702e73c0eb15f972",
+        "sha256": "0ghlr8pvhps75y4c4nxkdfkl0v0rrk7mc1n5nwp3cfyyn2zl6w94",
+        "type": "tarball",
+        "url": "https://github.com/Synthetica9/nix-linter/archive/8f1037ddb3c03a12f285b4a9702e73c0eb15f972.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixos-20.03",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "NixOS",
+        "repo": "nixpkgs-channels",
+        "rev": "8946799e079e466c0420c18312861090e08a8fe7",
+        "sha256": "10dwzdari9zjmqciccyyymmsj6zr5s76s9yqgs6ipshyfkkx7hrc",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/8946799e079e466c0420c18312861090e08a8fe7.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}

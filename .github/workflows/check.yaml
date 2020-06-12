@@ -1,0 +1,19 @@
+name: Check
+
+on: [pull_request, push]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out codebase
+        uses: actions/checkout@v2
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v10
+        with:
+          nix_path: nixpkgs=channel:nixos-20.03
+
+      - name: Run lint
+        run: nix-shell --run lint
