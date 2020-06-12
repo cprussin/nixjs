@@ -16,21 +16,51 @@ use the following `shell.nix`:
 
 ```nix
 {
-  nodejs ? "10.14.1",
-  yarn ? "1.12.3",
-  purescript ? "0.12.1",
-  nixjs ? fetchTarball "https://github.com/cprussin/nixjs/tarball/release-19.03",
+  nodejs ? "12.16.2",
+  yarn ? "1.22.4",
+  nixjs ? fetchTarball "https://github.com/cprussin/nixjs/tarball/release-20.03",
   nixpkgs ? <nixpkgs>
 }:
 
 let
-  nixjs-overlay = import nixjs { inherit nodejs yarn purescript; };
+  nixjs-overlay = import nixjs { inherit nodejs yarn; };
   pkgs = import nixpkgs { overlays = [ nixjs-overlay ]; };
 in
 
 pkgs.mkShell {
-  buildInputs = [ pkgs.nodejs pkgs.yarn pkgs.purescript ];
+  buildInputs = [ pkgs.nodejs pkgs.yarn ];
 }
+```
+
+## Binary Cache
+
+- **Cache URL**: `https://nixjs.cachix.org`
+- **Public Key**: `nixjs.cachix.org-1:3v2zgxvA0y7kmoD1/oIXfVRnDWZA+F3ysfT9TbBBg/E=`
+
+There is a [binary cache at cachix](https://app.cachix.org/cache/nixjs) that you
+can use.  Not all combinations are pre-built, but if you're using relatively
+modern versions you shouldn't have to build.
+
+To set up the cache, you can use the cachix client:
+
+```bash
+cachix use nixjs
+```
+
+Alternatively, you can add the appropriate options to `nix.conf` manually:
+
+```
+substituters = https://nixjs.cachix.org
+trusted-public-keys = nixjs.cachix.org-1:3v2zgxvA0y7kmoD1/oIXfVRnDWZA+F3ysfT9TbBBg/E=
+```
+
+Or with in your NixOS `configuration.nix`:
+
+```nix
+  nix = {
+    binaryCaches = [ "https://nixjs.cachix.org" ];
+    binaryCachePublicKeys = [ "nixjs.cachix.org-1:3v2zgxvA0y7kmoD1/oIXfVRnDWZA+F3ysfT9TbBBg/E=" ];
+  };
 ```
 
 ## Contributing
