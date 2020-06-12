@@ -23,7 +23,7 @@ let
     extraDepends = [ packages.happy ];
   };
   packages = ghc.override {
-    overrides = haskellPackagesNew: haskellPackagesOld: rec {
+    overrides = haskellPackagesNew: _: rec {
       network = haskellPackagesNew.callPackage networkPkg {};
       purescript = haskellPackagesNew.callPackage purescriptPkg {};
     };

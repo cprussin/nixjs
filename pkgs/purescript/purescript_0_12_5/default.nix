@@ -22,7 +22,7 @@ let
     sha256 = "0dpn0v510lgzd9zqglqan4m8l7bf891psqmih147pnrmigmiaa39";
   };
   packages = ghc.override {
-    overrides = haskellPackagesNew: haskellPackagesOld: rec {
+    overrides = haskellPackagesNew: _: rec {
       network = haskellPackagesNew.callPackage networkPkg {};
       purescript = haskellPackagesNew.callPackage purescriptPkg {};
     };

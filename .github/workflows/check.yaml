@@ -47,5 +47,5 @@ jobs:
       - name: Install packages
         run: nix-build format.nix
 
-      - name: Run lint
+      - name: Check formatting
         run: ./result/bin/format --check

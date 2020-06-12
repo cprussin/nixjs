@@ -1,4 +1,4 @@
-versions: self: super:
+versions: _: super:
 
 let
   pkgs = import ./pkgs { callPackage = super.callPackage; };
