@@ -23,14 +23,14 @@ jobs:
       - name: Set up cachix
         uses: cachix/cachix-action@v6
         with:
-          name: nixjs
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+          name: nix-linter
+          skipPush: true
 
       - name: Install packages
-        run: nix-shell
+        run: nix-build lint.nix
 
       - name: Run lint
-        run: nix-shell --run lint
+        run: ./result/bin/lint
 
   format:
     runs-on: ubuntu-latest
@@ -47,8 +47,8 @@ jobs:
       - name: Set up cachix
         uses: cachix/cachix-action@v6
         with:
-          name: nixjs
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+          name: nix-linter
+          skipPush: true
 
       - name: Install packages
         run: nix-shell
