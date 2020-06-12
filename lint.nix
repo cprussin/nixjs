@@ -20,4 +20,4 @@ let
   };
 in
 
-pkgs.writeShellScriptBin "lint" "nix-linter $@ ${files}"
+pkgs.writeShellScriptBin "lint" "${pkgs.nix-linter}/bin/nix-linter $@ ${files}"

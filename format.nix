@@ -6,4 +6,4 @@ let
   pkgs = import nixpkgs { overlays = []; };
 in
 
-pkgs.writeShellScriptBin "format" "nixpkgs-fmt $@ ${files}"
+pkgs.writeShellScriptBin "format" "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt $@ ${files}"
