@@ -6,18 +6,18 @@ in
 , nixpkgs ? sources.nixpkgs
 }:
 
-let
-  nix-linter-overlay = self: _: {
-    nix-linter = (self.callPackage nix-linter {}).nix-linter;
-  };
+  let
+    nix-linter-overlay = self: _: {
+      nix-linter = (self.callPackage nix-linter {}).nix-linter;
+    };
 
-  files = import ./files.nix;
+    files = import ./files.nix;
 
-  pkgs = import nixpkgs {
-    overlays = [
-      nix-linter-overlay
-    ];
-  };
-in
+    pkgs = import nixpkgs {
+      overlays = [
+        nix-linter-overlay
+      ];
+    };
+  in
 
-pkgs.writeShellScriptBin "lint" "${pkgs.nix-linter}/bin/nix-linter $@ ${files}"
+    pkgs.writeShellScriptBin "lint" "${pkgs.nix-linter}/bin/nix-linter $@ ${files}"

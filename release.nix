@@ -1,6 +1,5 @@
-{
-  nodejs ? null,
-  yarn ? null
+{ nodejs ? null
+, yarn ? null
 }:
 
 let

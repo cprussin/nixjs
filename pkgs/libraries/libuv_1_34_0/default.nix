@@ -32,7 +32,8 @@ stdenv.mkDerivation rec {
       "fs_chown"
 
     ];
-  in lib.optionalString doCheck "sed '/${disable}/d' -i test/test-list.h";
+  in
+    lib.optionalString doCheck "sed '/${disable}/d' -i test/test-list.h";
 
   nativeBuildInputs = [ automake autoconf libtool pkgconfig ];
 
@@ -44,10 +45,10 @@ stdenv.mkDerivation rec {
 
   meta = with lib; {
     description = "A multi-platform support library with a focus on asynchronous I/O";
-    homepage    = https://github.com/libuv/libuv;
+    homepage = https://github.com/libuv/libuv;
     maintainers = with maintainers; [ cstrahan ];
-    platforms   = with platforms; linux ++ darwin;
-    license     = with licenses; [ mit isc bsd2 bsd3 cc-by-40 ];
+    platforms = with platforms; linux ++ darwin;
+    license = with licenses; [ mit isc bsd2 bsd3 cc-by-40 ];
   };
 
 }
