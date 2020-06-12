@@ -1,4 +1,5 @@
 name: Build
+
 on:
   pull_request:
   push:
@@ -6,17 +7,49 @@ on:
       - master
       - release-20.03
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 * * * *'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: cachix/install-nix-action@v10
-      with:
-        nix_path: nixpkgs=channel:nixos-20.03
-    - uses: cachix/cachix-action@v6
-      with:
-        name: nixjs
-        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-    - run: nix-build release.nix
+
+      - name: Check out codebase
+        uses: actions/checkout@v2
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v10
+        with:
+          nix_path: nixpkgs=channel:nixos-20.03
+
+      - name: Set up cachix
+        uses: cachix/cachix-action@v6
+        with:
+          name: nixjs
+          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+
+      - name: Build packages
+        run: |
+          nix-build release.nix \
+              --argstr nodejs ${{ matrix.nodejs }} \
+              --argstr yarn ${{ matrix.yarn }}
+
+    strategy:
+      matrix:
+        yarn:
+          - 1.12.3
+          - 1.16.0
+          - 1.21.1
+          - 1.22.0
+          - 1.22.4
+        nodejs:
+          - 10.13.0
+          - 10.14.1
+          - 10.14.2
+          - 10.15.0
+          - 10.15.1
+          - 10.15.3
+          - 10.19.0
+          - 12.14.1
+          - 12.16.0
+          - 12.16.2
