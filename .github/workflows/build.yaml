@@ -13,18 +13,27 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: cachix/install-nix-action@v10
+
+      - name: Check out codebase
+        uses: actions/checkout@v2
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v10
         with:
           nix_path: nixpkgs=channel:nixos-20.03
-      - uses: cachix/cachix-action@v6
+
+      - name: Set up cachix
+        uses: cachix/cachix-action@v6
         with:
           name: nixjs
           signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-      - run: |
+
+      - name: Build packages
+        run: |
           nix-build release.nix \
               --argstr nodejs ${{ matrix.nodejs }} \
               --argstr yarn ${{ matrix.yarn }}
+
     strategy:
       matrix:
         yarn:
