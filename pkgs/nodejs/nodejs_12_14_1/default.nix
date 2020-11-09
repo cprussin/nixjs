@@ -1,7 +1,7 @@
-{ callPackage }:
+{ callPackage, nixpkgs }:
 
 let
-  buildNodejs = callPackage <nixpkgs/pkgs/development/web/nodejs/nodejs.nix> {};
+  buildNodejs = callPackage "${nixpkgs}/pkgs/development/web/nodejs/nodejs.nix" {};
 in
 
 buildNodejs {

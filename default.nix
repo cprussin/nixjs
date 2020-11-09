@@ -1,7 +1,10 @@
-versions: _: super:
+{ nixpkgs ? <nixpkgs>, versions }: _: super:
 
 let
-  pkgs = import ./pkgs { callPackage = super.callPackage; };
+  pkgs = import ./pkgs {
+    inherit nixpkgs;
+    callPackage = super.callPackage;
+  };
   normalizeVersion = builtins.replaceStrings [ "." ] [ "_" ];
   getPackage = pkg: version: pkgs."${pkg}_${normalizeVersion version}";
 in
