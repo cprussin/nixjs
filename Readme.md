@@ -23,7 +23,12 @@ use the following `shell.nix`:
 }:
 
 let
-  nixjs-overlay = import nixjs { inherit nodejs yarn; };
+  nixjs-overlay = import nixjs {
+    inherit nixpkgs;
+    versions = {
+      inherit nodejs yarn;
+    };
+  };
   pkgs = import nixpkgs { overlays = [ nixjs-overlay ]; };
 in
 
