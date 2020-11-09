@@ -1,7 +1,6 @@
-{ callPackage, nixpkgs, libuv_1_34_0 }:
+{ callPackage, nixpkgs, icu66 }:
 let
-  libuv = libuv_1_34_0;
-  buildNodejs = callPackage "${nixpkgs}/pkgs/development/web/nodejs/nodejs.nix" { inherit libuv; };
+  buildNodejs = callPackage "${nixpkgs}/pkgs/development/web/nodejs/nodejs.nix" { icu = icu66; };
 in
 buildNodejs {
   version = "12.16.0";
