@@ -1,7 +1,6 @@
 { nodejs ? null
 , yarn ? null
 }:
-
 let
   versions =
     if nodejs == null
@@ -13,5 +12,4 @@ let
   nixjs = import (./.) versions;
   pkgs = import <nixpkgs> { overlays = [ nixjs ]; };
 in
-
 map (pkg: pkgs."${pkg}") (builtins.attrNames versions)

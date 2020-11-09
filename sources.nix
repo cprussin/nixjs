@@ -6,7 +6,6 @@ let
   sources = import "${nivSrc}/nix/sources.nix" {
     sourcesFile = ./sources.json;
   };
-  niv = import nivSrc {};
+  niv = import nivSrc { };
 in
-
 niv // sources

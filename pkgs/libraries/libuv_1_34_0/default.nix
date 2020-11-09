@@ -18,21 +18,22 @@ stdenv.mkDerivation rec {
     sha256 = "0vcrrqf0zqgsfmgbyl45qhajyab98kxqq66l0w4lkj5say86aln8";
   };
 
-  postPatch = let
-    disable = lib.concatStringsSep "\\|" [
+  postPatch =
+    let
+      disable = lib.concatStringsSep "\\|" [
 
-      # probably network-dependent
-      "getnameinfo_basic_ip4"
-      "getnameinfo_basic_ip4_sync"
-      "getnameinfo_basic_ip6"
+        # probably network-dependent
+        "getnameinfo_basic_ip4"
+        "getnameinfo_basic_ip4_sync"
+        "getnameinfo_basic_ip6"
 
-      # user namespaces
-      "spawn_setuid_fails"
-      "spawn_setgid_fails"
-      "fs_chown"
+        # user namespaces
+        "spawn_setuid_fails"
+        "spawn_setgid_fails"
+        "fs_chown"
 
-    ];
-  in
+      ];
+    in
     lib.optionalString doCheck "sed '/${disable}/d' -i test/test-list.h";
 
   nativeBuildInputs = [ automake autoconf libtool pkgconfig ];

@@ -1,4 +1,4 @@
-{ version, sha256, extraDepends ? [] }:
+{ version, sha256, extraDepends ? [ ] }:
 { mkDerivation
 , aeson
 , aeson-better-errors
