@@ -9,7 +9,7 @@ let
       if yarn == null
       then { inherit nodejs; }
       else { inherit nodejs yarn; };
-  nixjs = import (./.) versions;
+  nixjs = import (./.) { inherit versions; };
   pkgs = import <nixpkgs> { overlays = [ nixjs ]; };
 in
 map (pkg: pkgs."${pkg}") (builtins.attrNames versions)
