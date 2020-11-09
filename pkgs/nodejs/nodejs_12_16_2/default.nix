@@ -1,6 +1,6 @@
-{ callPackage, nixpkgs }:
+{ callPackage, nixpkgs, icu66 }:
 let
-  buildNodejs = callPackage "${nixpkgs}/pkgs/development/web/nodejs/nodejs.nix" { };
+  buildNodejs = callPackage "${nixpkgs}/pkgs/development/web/nodejs/nodejs.nix" { icu = icu66; };
 in
 buildNodejs {
   version = "12.16.2";
