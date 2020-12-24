@@ -4,6 +4,7 @@
   electron_3_0_0-beta_5 = callPackage ./electron/electron_3_0_0-beta_5 { };
   electron_4_0_4 = callPackage ./electron/electron_4_0_4 { };
 
+  nodejs_9_10_1 = callPackage ./nodejs/nodejs_9_10_1 { inherit nixpkgs; };
   nodejs_10_13_0 = callPackage ./nodejs/nodejs_10_13_0 { inherit nixpkgs; };
   nodejs_10_14_1 = callPackage ./nodejs/nodejs_10_14_1 { inherit nixpkgs; };
   nodejs_10_14_2 = callPackage ./nodejs/nodejs_10_14_2 { inherit nixpkgs; };
